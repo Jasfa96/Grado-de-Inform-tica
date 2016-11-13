@@ -1,0 +1,39 @@
+Para solucionar el ejercicio he hecho unos cambios en la parte donde según el rank se hace una función u otra.
+
+Buffer = size/2;
+
+if (rank<Buffer){
+	productor();	
+}
+else if(rank==Buffer){
+	buffer();
+}
+else{
+	int iterConsumidor = ITERS*Buffer/(size-1-Buffer);
+	consumidor(iterConsumidor);
+}
+
+3.Productor produce el valor 0
+El buffer recibe 0 del productor.
+El buffer recibe 0 del productor.
+Productor produce el valor 0
+El buffer recibe 0 del productor.
+Productor produce el valor 0
+El buffer recibe 0 del productor.
+Productor produce el valor 0
+Consumidor recibe valor 0 de Buffer 
+El buffer envia 0 al consumidor.
+El buffer recibe 1 del productor.
+El buffer recibe 1 del productor.
+Productor produce el valor 1
+Productor produce el valor 1
+Consumidor recibe valor 2 de Buffer 
+El buffer envia 1 al consumidor.
+El buffer recibe 2 del productor.
+El buffer envia 2 al consumidor.
+El buffer recibe 3 del productor.
+El buffer envia 3 al consumidor.
+Productor produce el valor 2
+Productor produce el valor 3
+...
+

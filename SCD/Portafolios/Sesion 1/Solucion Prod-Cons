@@ -1,0 +1,5 @@
+1.
+He añadido 3 semaforos A,B y C, cuyo valor inicial es 1, 0 y 1 respectivamente y he creado un buffer. Luego hice una variable "pos" de auxiliar.
+En la función del productor he colocado un wait en el semaforo A, además he metido el dato producido en la posicion actual del buffer y he aumentado "pos" en uno, finalmente le he puesto un sem_post al semaforo B.
+En la función consumidor hace falta poner dos wait al principio a los semaforos A y C, luego ponemos el ultimo dato del buffer y le mando un signal a C y A para finalmente consumir el dato.
+

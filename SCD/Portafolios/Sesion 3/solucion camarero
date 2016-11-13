@@ -1,0 +1,62 @@
+1.Este problema es bastante similar a el de los filósofos pero añadiendo la funcion camarero que va sentando a los filosofos. La función del tenedor no ha sido modificada, los cambios respecto al ejercicio anterior es en la funcion filosofo que ahora solicita sentarse al camarero con un MPI_Send y un MPI_Recv se sentaría. Al final de la función añadimos un MPI_Ssend para levantarse.
+Lo más destacado del camarero es que al principio pongo un MPI_Probe según el número de filósofos sentados.
+
+3.Filósofo 6 solicita sentarse
+Filósofo 2 solicita sentarse
+Filósofo 6 se sienta, hay 1 filósofos sentados
+Filósofo 6 solicita tenedor 7
+Filósofo 2 se sienta, hay 2 filósofos sentados
+Filósofo 4 solicita sentarse
+Filósofo 2 solicita tenedor 3
+Filósofo 4 se sienta, hay 3 filósofos sentados
+Filósofo 4 solicita tenedor 5
+Tenedor 3 recibe petición de filósofo 2
+Filósofo 2 solicita tenedor 1
+Filósofo 2 COMIENDO
+Tenedor 1 recibe petición de filósofo 2
+Filósofo 0 solicita sentarse
+Filósofo 4 solicita tenedor 3
+Tenedor 5 recibe petición de filósofo 4
+Filósofo 0 se sienta, hay 4 filósofos sentados
+Filósofo 0 solicita tenedor 1
+Filósofo 6 solicita tenedor 5
+Tenedor 7 recibe petición de filósofo 6
+Filósofo 8 solicita sentarse
+Filósofo 2 suelta tenedor 3
+Filósofo 2 suelta tenedor 1
+Tenedor 3 recibe liberación de filósofo 2
+Tenedor 3 recibe petición de filósofo 4
+Tenedor 1 recibe liberación de filósofo 2
+Tenedor 1 recibe petición de filósofo 0
+Filósofo 0 solicita tenedor 9
+Filósofo 4 COMIENDO
+Tenedor 9 recibe petición de filósofo 0
+Filósofo 0 COMIENDO
+Filósofo 2 se levanta, hay 3 filósofos sentados
+Filósofo 2 PENSANDO
+Filósofo 8 se sienta, hay 4 filósofos sentados
+Filósofo 8 solicita tenedor 9
+Filósofo 0 suelta tenedor 1
+Filósofo 0 suelta tenedor 9
+Tenedor 1 recibe liberación de filósofo 0
+Filósofo 2 solicita sentarse
+Filósofo 4 suelta tenedor 5
+Filósofo 0 se levanta, hay 3 filósofos sentados
+Filósofo 0 PENSANDO
+Tenedor 5 recibe liberación de filósofo 4
+Tenedor 9 recibe liberación de filósofo 0
+Tenedor 9 recibe petición de filósofo 8
+Filósofo 8 solicita tenedor 7
+Filósofo 4 suelta tenedor 3
+Tenedor 5 recibe petición de filósofo 6
+Filósofo 6 COMIENDO
+Tenedor 3 recibe liberación de filósofo 4
+Filósofo 2 solicita tenedor 3
+Tenedor 3 recibe petición de filósofo 2
+Filósofo 2 solicita tenedor 1
+Filósofo 2 COMIENDO
+Tenedor 1 recibe petición de filósofo 2
+Filósofo 2 se sienta, hay 4 filósofos sentados
+Filósofo 4 se levanta, hay 3 filósofos sentados
+Filósofo 4 PENSANDO
+...

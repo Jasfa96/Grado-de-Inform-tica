@@ -1,0 +1,6 @@
+1.
+He creado 4 objetos condicion que son: papel, tabaco, cerillas y estanco.
+Y un semáforo por cada una de ellas, los tres primeros semáforos tienen un wait esperando hasta que su ingrediente esta listo y una vez cogido le mandan una señal al estanquero. El valor inicial de estos tres es de 0.
+El semáforo del estanquero se inicializa en 1, este genera un numero aleatorio entre 1 y 3 para elegir cual ingrediente pone en la mesa una vez puesto en la mesa se pone en espera hasta que le llega la señal de que lo han cogido.
+
+
