@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Practica 2</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <script type="text/javascript" src="../libs/three.js"></script>
+    <script type="text/javascript" src="../libs/jquery-1.9.0.js"></script>
+    <script type="text/javascript" src="../libs/stats.js"></script>
+    <script type="text/javascript" src="../libs/dat.gui.js"></script>
+    <script type="text/javascript" src="../libs/Tween.js"></script>
+    <script type="text/javascript" src="../libs/TrackballControls.js"></script>
+    <script type="text/javascript" src="Astro.js"></script>
+    <script type="text/javascript" src="Estrella.js"></script>
+    <script type="text/javascript" src="TheScene.js"></script>
+    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="Planeta.js"></script>    
+    <style>
+        body{
+            margin: 0;
+            overflow: hidden;
+        }
+        #WebGL-output{
+          background-image: url("universo.jpg");
+          background-repeat: repeat;
+      }
+    </style>
+</head>
+<body>
+
+<!-- Div para la salida de la estadística -->
+<div id="Stats-output">
+</div>
+
+<!-- Div para renderizar -->
+<div id="WebGL-output">
+</div>
+
+</body>
+</html>

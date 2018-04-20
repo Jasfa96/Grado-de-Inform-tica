@@ -1,0 +1,16 @@
+Sesores
+luz es un socket que tiene la funcion cambio de luz que es un emit
+temperatura es igual y tiene un emit que es ancho temperatura
+hay 2 socket mas: Actuadores
+persiana que tiene la funcion cambiosPersoana
+aire acondicionado que es cambios de aire que ambos lo reciben
+
+Luego está el agente
+tiene 2 funciones que emite, cambio de luz y cambio de temperatura
+y manda 2 cambiar persiana y alarma (NO CAMBIAR LUZ)
+
+Usuario cambia luz, cambia temperatura, manda y recibe persiana(encender o apagar), manda y recibea aire acondicionado(encender o apagar),
+recibe alarma
+
+
+socket.broadcast.emit(...) modifica a todos salvo al mismo emisor

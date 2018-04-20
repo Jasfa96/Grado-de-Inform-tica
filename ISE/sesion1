@@ -1,0 +1,60 @@
+
+
+
+TEORIA
+¿Qué es MD? La controladora RAID software del kernel de Linux (llamada md, de multiple disk, ‘disco múltiple’) puede ser usada para construir un conjunto RAID 1+0 clásico, pero también permite un único nivel RAID 10 con algunas extensiones interesantes.
+En particular, soporta un espejado de k bloques en n unidades cuando k no es divisible por n. Esto se hace repitiendo cada bloque k veces al escribirlo en un conjunto RAID 0 subyacente de n unidades. Evidentemente esto equivale a la configuración RAID 10 estándar.
+Linux también permite crear otras configuraciones RAID usando la controladora md (niveles 0, 1, 4, 5 y 6) además de otros usos no RAID como almacenamiento multirruta y LVM2.
+
+¿Qué es almacenamiento real? “memoria principal ”, “memoria primaria” o “memoria real”
+¿Qué es el volumen logico? 
+¿Qué permite hacer el LVM? Logical Volume Manage, LVM es un método de localización del espacio disco duro en voúmenes lógicos que pueden ser fácilmente redimensionados en vez de particiones. Con LVM, el disco duro o grupo de discos duros está localizado para uno o más volúmenes físicos. Un volumen físico no abarca más de una unidad.
+¿Qué es MBR? Un registro de arranque principal, conocido también como registro de arranque maestro (por su nombre en inglés master boot record, MBR) es el primer sector de un dispositivo de almacenamiento de datos, como un disco duro.
+¿Qué es GPT? La tabla de particiones GUID (GPT) es un estándar para la colocación de la tabla de particiones en un disco duro físico.
+
+Volúmenes físicos:	Es necesario designar un disco como volumen físico y ponerlo en estado disponible para poderlo asignar a un grupo de volúmenes.
+Grupos de volúmenes:	Un grupo de volúmenes es una colección de 1 a 32 volúmenes físicos de tamaños y tipos diferentes.
+Particiones físicas:	Cuando se añade un volumen físico a un grupo de volúmenes, el volumen físico se particiona en unidades de espacio contiguas, de igual tamaño, denominadas particiones físicas. Una partición física es la unidad más pequeña de asignación de espacio de almacenamiento y es un espacio contiguo en un volumen físico.Volúmenes lógicosTras crear un grupo de volúmenes, puede crear volúmenes lógicos en él.
+Particiones lógicas:	Al crear un volumen lógico, se especifica el número de particiones lógicas para el volumen lógico.
+Sistemas de archivos:	El volumen lógico define la asignación de espacio de disco hasta el nivel de partición física. Se consiguen mejores niveles de gestión de datos mediante componentes de software de nivel superior como, por ejemplo, el Gestor de memoria virtual o el sistema de archivos. Por lo tanto, el paso final de la evolución de un disco es la creación de sistemas de archivos
+
+
+/ (raíz): es la partición más importante del sistema Linux. En ella se instalarán los ficheros del sistema operativo Linux. Además, será el punto de partida para el montaje de otras particiones. Esta partición será obligatoria (ha de existir en un equipo Linux), el tamaño asignado puede variar en función del uso que queramos dar a nuestro equipo, si vamos a instalar muchas aplicaciones necesitaremos darle un tamaño grande. Si no vamos a disponer de una partición home separada los datos de los usuarios residirán en esta partición por lo que necesitaremos bastante espacio. Puede ser ext2, ext3, y ext4. 
+
+/boot: es una partición no obligatoria, se usa para separar los ficheros necesarios para el arranque del sistema del resto. Es la partición de arranque del sistema. La partición montada en /boot contiene el kernel del sistema operativo (el cual permite a su sistema arrancar) junto con archivos utilizados durante el proceso de arranque. Puede ser ext2, ext3, y ext4. 
+
+swap: es la partición de intercambio, puede ser un fichero en vez de una partición, el uso de esta partición es muy recomendable y obligatorio en casi todas las distribuciones de Linux. Esta partición es el equivalente al fichero de memoria virtual de Windows. Por lo tanto será usada por Linux como memoria virtual, cuando la memoria RAM del equipo se vaya llenando, la usará como un almacén temporal de datos. En sistemas anteriores se aconsejaba que esta partición tuviera al menos el doble de bytes que la memoria RAM del equipo. Actualmente, en equipos con mucha RAM, se recomienda al menos que esta partición tenga un poco más del tamaño usado habitualmente por la RAM del equipo. Por ejemplo, si en nuestro equipo con 20GB de RAM suele haber ocupadas 12, es recomendable que la swap tenga, al menos, unas 17GB. De todas formas esta partición es redimensionable, si creemos que necesitamos más podremos ampliarla (siempre que haya espacio libre en el disco duro) o reducirla. 
+
+/home: muchas distribuciones Linux crean por defecto la partición /home, de esta forma permiten separar los datos de los usuarios del resto de particiones. Así, si tenemos que formatear el equipo, podremos respetar esta partición y no tendremos que hacer backup. En realidad esta partición no es obligatoria, si no la creamos, Linux creará la carpeta /home en la partición raíz. Puede ser ext2, ext3, y ext4. 
+
+/opt: esta partición servirá para guardar las aplicaciones instaladas en el equipo separadas del resto de particiones. Por supuesto, esta partición no es necesaria, al igual que ocurre con la partición /home. Se usa a veces para separar las aplicaciones instaladas en el equipo del resto de particiones. Puede ser ext2, ext3, y ext4. 
+
+
+
+
+Nuevo, UbuntuServer seleccionamos la ram que queramos , creamos un nuevo disco duro (VDI) Reservado dinámicamente 10GBr
+En almacenamiento añadimos el disco que queremos en el IDE y en el SATA creamos un disco duro como el de antes y le damos a iniciar
+Español>Install Ubuntu Server>Español y palante
+Contraseña: practicas,ISE
+NO CIFRAR
+peninsula
+Método de particionado-> MANUAL
+Para crear tabla de particiones para ello Clickar primer disco->SI y denuevo con el otro
+Configurar RAID por software->SI->Crear MD->Raid1 -> 2 -> 0 -> seleccionamos los 2 -> si -> terminar
+Configurar el gestor de volumenes lógicos->si->Creamos un grupo que se llame Servidor-> marcamos el que sale-> Si
+Crear volumen logico->Servidor->arranque->200MB
+Hacemos lo mismo con hogar con 800MB
+Hacemos ahora swap con el doble de la ram (2GB)
+y el resto para raiz
+
+Primero hay que ir dandole a cada uno y poner su ext y el lugar donde se sitúan, hogar /home, raiz /, swap AREA DE INTERCAMBIO, arranque /boot
+Configurar volúmenes cifrados->SI->create noseque->hogar,raiz,swap
+
+proxy->continuar
+sin actualizaciones
+Continuar
+
+GRUB SI->sea
+
+
+

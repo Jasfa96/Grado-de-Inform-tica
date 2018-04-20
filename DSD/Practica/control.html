@@ -1,0 +1,110 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Calculadora</title>
+	</head>
+	<body>
+		<form action="javascript:void(0);">
+			Temperatura actual: <div id="TempActual"></div><br />
+			Luminosidad actual: <div id="LumActual"></div><br />
+			<br />
+			<input id="Persianas" type="submit" value="" onclick="javascript:bajaPersianas();" />
+			<input id="Aire" type="submit" value="" onclick="javascript:AireONOFF();"/>
+
+		</form>
+		<span id="resultados"></span>
+				 ALERTA: <div id="Alerta"> </div>
+
+
+	</body>
+	<script src="/socket.io/socket.io.js"></script>
+	<script type="text/javascript">
+	function actualizarLista(usuarios){
+			var listContainer = document.getElementById('resultados');
+			listContainer.innerHTML = '';
+			var listElement = document.createElement('ul');
+			listContainer.appendChild(listElement);
+			var num = usuarios.length;
+			for(var i=0; i<num; i++) {
+	            var listItem = document.createElement('li');
+	            listItem.innerHTML = JSON.stringify(usuarios[i]);
+	            listElement.appendChild(listItem);
+	        }
+	    }
+
+
+		var serviceURL = "localhost:8080";
+		var socket = io.connect(serviceURL);
+
+
+function bajaPersianas() {
+
+          var valor=document.getElementById('Persianas').value;
+
+
+
+			socket.emit('BajaPersianas',{per: valor,  air: "nada"} );
+
+
+		}
+
+		function AireONOFF() {
+
+
+                    var aire=document.getElementById('Aire').value;
+
+
+			socket.emit('AireONOFF',{per: "nada",  air: aire} );
+
+
+		}
+	//	socket.on('obtener', function(data) {
+	//					actualizarLista(data);
+
+	//	});
+				socket.on('Alerta', function(data) {
+					console.log("hola");
+				  var listContainer = document.getElementById('Alerta');
+
+                	listContainer.innerHTML = data.persi+" "  + data.air;
+                    //listContainer.innerHTML = data.air;
+                    if(data.persi=="Bajo persianas")
+                    {
+                                document.getElementById('Persianas').value = "Subo persianas";
+
+
+                    }else if(data.persi=="Subo persianas")
+                    {
+                        document.getElementById('Persianas').value = "Bajo persianas";
+
+                    }
+
+                    if(data.air=="Aire ON")
+                    {
+                                document.getElementById('Aire').value = "Aire OFF";
+
+
+                    }else if(data.air=="Aire OFF")
+                    {
+                        document.getElementById('Aire').value = "Aire ON";
+
+                    }
+				});
+
+				socket.on('Valores', function(data) {
+				  var listContainer = document.getElementById('TempActual');
+                	listContainer.innerHTML = JSON.stringify(data[0].temp);
+                	var listContainer = document.getElementById('LumActual');
+                	listContainer.innerHTML =JSON.stringify(data[0].lum);
+                    //listContainer.innerHTML = data.air;
+
+				});
+
+		/*
+		Dudas:
+		ENviar a todos la respuesta de los sensores?
+		*/
+
+
+	</script>
+</html>

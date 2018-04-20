@@ -1,0 +1,14 @@
+
+
+
+git init (inicia)
+git branch pone la rama donde estás
+git add algo mete algo
+git status comprueba lo que hay
+git rm —cached algo borra algo de la lista
+
+antes de hacer el comió hay que iniciarse
+git config - -global user.email “email”
+git config - -global user.name “nombre”
+
+git commit -m “Comentario”

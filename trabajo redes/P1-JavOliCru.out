@@ -1,0 +1,23 @@
+\BOOKMARK [1][-]{section.1}{Introducci\363n a SPDY}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{\277Qu\351 es SPDY?}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Definici\363nes}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{HTTP y sus principales problemas}{section.1}% 4
+\BOOKMARK [2][-]{subsection.1.4}{Principales diferencias entre SPDY y HTTP}{section.1}% 5
+\BOOKMARK [1][-]{section.2}{\277C\363mo se conecta SPDY?}{}% 6
+\BOOKMARK [1][-]{section.3}{Funcionamiento del framing}{}% 7
+\BOOKMARK [2][-]{subsection.3.1}{Control\137 frames}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.2}{Data\137frames}{section.3}% 9
+\BOOKMARK [1][-]{section.4}{Funcionamiento de los streams}{}% 10
+\BOOKMARK [2][-]{subsection.4.1}{Stream frames}{section.4}% 11
+\BOOKMARK [1][-]{section.5}{Data flow}{}% 12
+\BOOKMARK [1][-]{section.6}{\277Cu\341les son los control\137frames que utiliza SPDY?}{}% 13
+\BOOKMARK [2][-]{subsection.6.1}{SYN\137STREAM}{section.6}% 14
+\BOOKMARK [2][-]{subsection.6.2}{SYN\137REPLY}{section.6}% 15
+\BOOKMARK [2][-]{subsection.6.3}{RST\137STREAM}{section.6}% 16
+\BOOKMARK [2][-]{subsection.6.4}{GOAWAY}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.5}{SETTINGS}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.6}{PING}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.7}{HEADERS}{section.6}% 20
+\BOOKMARK [2][-]{subsection.6.8}{WINDOW UPDATE}{section.6}% 21
+\BOOKMARK [1][-]{section.7}{Seguridad}{}% 22
+\BOOKMARK [1][-]{section.8}{Conclusi\363n}{}% 23

@@ -1,0 +1,53 @@
+
+UBUNTU
+tasksel->LAMP server
+
+CENTOS:
+
+APACHE:
+
+yum search apache | grep http
+yum install httpd.x86_64
+systemctl start httpd.service
+firewall-cmd - -add-port=80/tcp - -permanent
+firewall-cmd - -reload
+
+MARIADB
+
+yum install mariadb.86_64
+yum install mariadb-server
+systemctl status mariadb
+systemctl start mariadb
+mysql_secure_installation
+
+PHP
+
+yum install php
+php -a
+
+————————————————————
+vi /etc/httpd/conf/httpd.conf
+en directoryIndex añadir index.php
+systemctl restart httpd.service
+cd /var/www/html/
+añadimos el index.php con touch y escribimos
+
+<?php
+$enlace =  mysql_connect('localhost', ‘root’, ‘practicas,ISE’);
+if (!$enlace) {
+    die('No pudo conectarse: ' . mysql_error());
+}
+echo 'Conectado satisfactoriamente';
+mysql_close($enlace);
+?>
+
+si ponemos php index.php no funciona, necesitamos instalar
+yum install php-mysql.x86_64
+
+ahora si hacemos el 
+php index.php 
+funciona
+
+queremos acceder desde fuera, para ello escribimos
+setsebool -P httpd_can_network_connect_db on
+systemctl restart httpd.service

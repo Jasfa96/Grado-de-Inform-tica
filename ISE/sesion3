@@ -1,0 +1,66 @@
+
+
+dhclient para conectar internet
+ping www.google.com para comprobarlo
+yum install mdadm
+mdadm - -create /dev/md0 - -level=1 - -raid-devices=2 /dev/sdb /dev/sdc
+lsblk debe mostrarnos sdb y sdc con su md0
+
+pvcreate /dev/md0
+vgcreate pmraid /dev/md0
+lvcreate -L 1G -n newvar pmraid1
+mkfs -t xfs /dev/mapper/pmraid1-newvar para crear el sistema de archivos
+systemctl isolate rescue.target para activar el modo monousuario
+mkdir /mnt/newvar
+mount /dev/pmraid1/newvar /mnt/newvar
+cp -a /var/* /mnt/newvar copiamos todo a newvar
+cp /etc/fstab /etc/fstab.ori por si la lias
+lo abrimos con vi y añadimos:
+/dev/mapper/pmraid1-newvar	/var	xfs	defaults	0	0
+mv /var /var_old movemos /var a /var_old 
+cd /
+mkdir /var ; restorecon /var para crear la carpeta
+umount /mnt/newvar/ desmontamos /mnt
+mount -a
+lsblk
+systemctl isolate default.target
+
+
+————————————————————————
+
+eliminamos un disco duro y arrancamos
+lsblk no debe tener sdc
+vamos a cifrar
+systemctl isolate recue.target
+dhclient
+yum install -y cryptsetup
+cd /
+mkdir /varRaid
+cp -a /var/* /varRaid
+vi /etc/fstab
+reboot now
+lsblk y no debe aparecer /var
+cd /
+ls
+dhclient
+system ctl rescue.target
+unalias cp ; cp -a /varRaid/* /var y le damos a todo que si
+cryptsetup luksFormat /dev/mapper/pmraid1-newvar
+->YES (IMPORTANTE EN MAYUSCULA)
+->practicas,ISE
+->practicas,ISE
+
+cryptsetup luksOpen /dev/mapper/pmraid1-newvar pmraid1-newvar_crypt
+lsblk debe aparecer cifrado
+mkfs -t xfs /dev/mapper/pmraid1-newvar_crypt
+mkdir /mnt/varCif
+mount /dev/mapper/pmraid1-newvar_crypt /mnt/varCif/
+cp -a /varRaid/* /mnt/varCif
+blkid | grep cryp
+blkid | grep crypto
+cat /etc/crypttab debe estar vacio
+blkid | grep crypto >> /etc/crypttab
+
+vi /etc/crypttab y añadimos _crypt despues del newvar y eliminamos las “ “ de UUID y quitamos TYPE=“…” por none
+
+vi /etc/fstab

@@ -1,0 +1,150 @@
+<!DOCTYPE html> <!-- Para indicarle el tipo de documento al navegador -->
+
+<html>
+
+<head> <!-- Información sobre la página web -->
+	<meta charset="UTF-8"> <!-- Encodign -->
+	<title>MotionFreak - Noticia</title>
+	<link rel="stylesheet" type="text/css" href="../css/estilo-noticia.css" />
+	<script src="../scripts/funciones.js"></script>
+</head>
+
+<body>
+	<span class="centrar-img">
+		<h1>
+		<a href="portada.html"><img class="logo-periodico" src="../img/MotionFreak.png"  ALT="MotionFreak"> </a>
+		</h1>
+	</span>
+
+	<nav>
+		<ul>
+			<li><a href="portada.html">Inicio</a></li>
+			<li><a href="">Últimas noticias</a></li>
+			<li><a href="">Juegos</a></li>
+			<li><a href="">Series</a></li>
+			<li><a href="">Cómics</a></li>
+			<li><a href="">Industria</a></li>
+		</ul>
+	</nav>
+
+
+	<div class="main">
+		<div class="noticia">
+			<div class="seccion">
+			Industria
+			</div>
+					<article class="noticia-importante">
+							<h1 class="titular-grande">Horizon Zero Dawn - CD Projekt RED felicita a Guerrilla Games</h1>
+							<p class="pie-de-foto">Escrito por el Redactor X - 8 de marzo de 2017</p>
+							<h3 class="subtitulo"> CD Project RED parece estar encantado con el videojuego Horizon Zero Dawn y han mostrado cuánto les gusta con unas curiosas imágenes en Twitter</h3>
+							<span class="centrar-img">
+								<img class="img-noticia-grande" src="../img/horizon-zero-dawn-geralt-aloy.jpg" ALT="Horizon y The Witcher">
+							</span>
+							<h4 class="entradilla">Si esta mañana os contamos que Sony y Microsoft habían felicitado a Nintendo por los lanzamientos de The Legend of Zelda Breath of the Wild y Nintendo Switch, ahora os queremos informar de una nueva felicitación entre dos conocidas compañías del sector.</h4>
+
+							<p> En esta ocasión, ha sido CD Projekt, responsables de The Witcher 3 Wild Hunt, la que ha felicitado a Guerrilla Games por Horizon Zero Dawn para PS4. Además de la felicitación a través de un tuit, CD Projekt también ha publicado una imagen protagonizada por Geralt de Rivia y Aloy: </p>
+
+							<span class="centrar-img">
+								<p>
+									<a href="https://twitter.com/CDPROJEKTRED/status/837316575925514241">
+										<img class="imagen-noticia-grande" src="../img/tweet2.png"  ALT="MotionFreak">
+									</a>
+									<p class="pie-de-foto">
+										Imagen del tweet de CD Project.
+									</p>
+								</p>
+							</span>
+
+							<p>Pero eso no es todo, y es que Guerrilla Games no ha tardado en responder a la felicitación de CD Projekt por el lanzamiento de Horizon Zero Dawn y ha publicado un tuit que incluye un mensaje de agradecimiento y una nueva imagen de Aloy y Geralt de Rivia que no tiene desperdicio. Podéis verla a continuación: </p>
+
+							<span class="centrar-img">
+								<p>
+									<a href="https://twitter.com/Guerrilla/status/837735925417390085">
+										<img class="imagen-noticia-grande" src="../img/tweet.png"  ALT="MotionFreak">
+									</a>
+									<p class="pie-de-foto">
+										Imagen del tweet de Guerrilla Games.
+									</p>
+								</p>
+							</span>
+
+							<p>Os recordamos que hace unas horas os hemos presentado un completo unboxing de la edición coleccionista de Horizon Zero Dawn para que no perdáis detalle de todos sus contenidos entre los que destacan un libro de arte y una figura de Aloy.</p>
+
+
+					</article>
+
+					<span class="boton-centrado">
+						<a class="boton-imprimir" href="Noticia_imprimir.html">
+							 <img class="boton-imprimir" src="../img/Printer-icon.png"  ALT="MotionFreak">
+						</a>
+					</span>
+				</div>
+
+
+	<div class="panel-derecho">
+
+	<!--	<button class="popup" onclick="mostrarComentarios()">¡COMENTA! </button>
+
+  	<div class="caja-comentarios" id="comentarios">
+				<form name="Nombre" onsubmit="return campoRequerido()">
+					Nombre: <input>
+				</form>
+		</div>
+
+-->
+
+<button id="toggle-button">Toggle display</button>
+
+<!-- <span class="target">Toggle the span.</span> -->
+
+<div class="target">
+	<section>
+		<form id="formContacto" action="" method="post" name="contact_form" onsubmit="return validar('contact_form');" novalidate="">
+					<p>
+              <label for="name">Nombre:</label>
+              <input name="nombre" placeholder="a" required="" type="text" size="5">
+					</p>
+					<p>
+	            <label for="email">Email:</label>
+	            <input name="email" placeholder="a@a.com" required="" type="email" size="5" >
+					</p>
+					<p>
+						  Telefono:
+	            <input name="telefono" placeholder="1" ctype="text" size="5">
+
+					</p>
+					<p>
+	            Mensaje:
+	            <textarea name="mensaje" type="textarea"  placeholder="a" required=""></textarea>
+					</p>
+					<p>
+	            <button class="submit">Enviar</button>
+					</p>
+    </form>
+	</section>
+
+</div>
+<script type="text/javascript">
+
+document.getElementById('toggle-button').addEventListener('click', function () {
+    toggle(document.querySelectorAll('.target'));
+});
+
+
+</script>
+</div>
+</div>
+
+	<div class="pie-de-pagina">
+		<p>
+			<iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Fwww.facebook.com%2FMotionFreak-1446191272080380&layout=button&size=large&mobile_iframe=false&width=98&height=28&appId" width="98" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+			<a href="https://twitter.com/share" class="twitter-share-button" data-text="¡Cómo mola MotionFreak!" data-via="jasfa96" data-size="large">Tweet</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		</p>
+
+		Periódico MotionFreak, realizado por Ángel Píñar Rivas y Javier Oliva Cruz.
+	</div>
+
+</body>
+
+</html>

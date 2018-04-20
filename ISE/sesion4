@@ -1,0 +1,30 @@
+ SESIÓN 4:  CONFIGURACIÓN DE RED
+1. VirtualBox -> Preferencias -> Red -> Redes solo-anfitrion -> Crear
+(Ubuntu y Centos) -> Configuración -> Red -> Adaptador 2 -> Adaptador solo_anfitrión (cable conectado)
+——
+UBUNTU:
+2. lspci : tienen que salir 2 Ethernet (ip addr)
+3. sudo vi /etc/network/interfaces : copiar 2 últimas líneas y pegar después cambiando 3 por 8 y dhcp por static
+   y añadir:   address 192.168.56.105
+      network 255.255.255.0
+      gateway 192.168.56.1
+4. systemctl restart networking.service ; ip addr (tiene que salir interfaz con una sola IP) si no funciona sudo /etc/init.d/networking restart
+5. ping 192.168.56.1 -c 3 (para 3 iteraciones) : para comprobar funcionalidad
+——
+CENTOS:
+6. lspci: tienen que salir 2 Ethernet
+7. sudo vi /etc/sysconfig/network-scripts/ifcg-enp0s3 y ponemos:
+  ONBOOT=yes
+  IPADDR=192.168.56.110
+  NETMASK=255.255.255.0
+8. sudo vi /etc/sysconfig/network-scripts/ifcg-enp0s8 y ponemos:
+  TYPE=Ethernet
+  BOOTPROTO=none
+  NAME=enp0s8
+  DEVICE=enp0s8
+  ONBOOT=yes
+  IPADDR=192.168.56.110
+  NETMASK=255.255.255.0
+9. ifup enp0s8 : para activarlo
+10. Comprobamos con ip addr
+11. Para cambiar el tam del vol. logico: lvresize -L -500M /dev/mapper/cl-newvar

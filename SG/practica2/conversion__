@@ -1,0 +1,4 @@
+    JS                                  J
+Object3D .add                     BG  .addChild
+Object3D .add                     TG  .addChild
+Mesh----> 1. Geometry and Material       Shape3D----> Geometry and appearance

@@ -1,0 +1,331 @@
+#include "belkan.h"
+#include "conexion.h"
+#include "environment.h"
+#include <iostream>
+#include <cstdlib>
+#include <vector>
+#include <utility>
+#include <cstring>
+
+using namespace std;
+
+
+
+// -----------------------------------------------------------
+void PasarVectoraMapaCaracteres(int fila, int columna, char m[200][200], char *v, int brujula){
+  m[fila][columna]=v[0];
+
+    switch(brujula){
+        case 0: // Orientacion Norte
+
+		m[fila-1][columna]=v[1];
+		for (int i=0; i<3; i++){
+		  m[fila-2][columna+i-1]=v[2+i];
+		}
+		for (int j=0; j<5; j++){
+		  m[fila-3][columna+j-2]=v[5+j];
+		}
+	        break;
+	case 1: // Orientacion Este
+		m[fila][columna+1]=v[1];
+		for (int i=0; i<3; i++){
+		  m[fila+i-1][columna+2]=v[2+i];
+		}
+		for (int j=0; j<5; j++){
+		  m[fila+j-2][columna+3]=v[5+j];
+		}
+	        break;
+        case 2: // Orientacion Sur
+		m[fila+1][columna]=v[1];
+		for (int i=0; i<3; i++){
+		  m[fila+2][columna+1-i]=v[2+i];
+		}
+		for (int j=0; j<5; j++){
+		  m[fila+3][columna+2-j]=v[5+j];
+		}
+		                break;
+        case 3: // Orientacion Oeste
+		m[fila][columna-1]=v[1];
+		for (int i=0; i<3; i++){
+		  m[fila+1-i][columna-2]=v[2+i];
+		}
+		for (int j=0; j<5; j++){
+		  m[fila+2-j][columna-3]=v[5+j];
+		}
+
+                break;
+    }
+
+}
+
+
+// -----------------------------------------------------------
+void Agent::Perceive(Environment &env)
+{
+	env.SenSorStatus(VISTA_, SURFACE_, MENSAJE_, REINICIADO_, EN_USO_, MOCHILLA_, PUNTUACION_, FIN_JUEGO_, SALUD_, false);
+
+}
+
+
+bool Agent::Perceive_Remote(conexion_client &Cliente, Environment &env)
+{
+	bool actualizado=false;
+
+
+	actualizado = env.Perceive_Remote(Cliente);
+	if (actualizado)
+		env.SenSorStatus(VISTA_, SURFACE_, MENSAJE_, REINICIADO_, EN_USO_, MOCHILLA_, PUNTUACION_, FIN_JUEGO_, SALUD_, true);
+
+    return actualizado;
+}
+
+
+// -----------------------------------------------------------
+string ActionStr(Agent::ActionType accion)
+{
+	switch (accion)
+	{
+	case Agent::actFORWARD: return "FORWARD";
+	case Agent::actTURN_L: return "TURN LEFT";
+	case Agent::actTURN_R: return "TURN RIGHT";
+	case Agent::actIDLE: return "IDLE";
+	case Agent::actPICKUP: return "PICK UP";
+	case Agent::actPUTDOWN: return "PUT DOWN";
+	case Agent::actPUSH: return "PUSH";
+	case Agent::actPOP: return "POP";
+	case Agent::actGIVE: return "GIVE";
+	case Agent::actTHROW: return "THROW";
+	default: return "????";
+	}
+}
+
+// -----------------------------------------------------------
+void Agent::ActualizarInformacion(Environment *env){
+	// Actualizar mi informacion interna
+	if (REINICIADO_){ 
+		// Lo que tengas que hacer si eres reposicionado en el juego
+		for (int i=0;i<200;i++){
+			for(int j=0; j<200; j++){
+				mapa_entorno_[i][j]='?';	
+				mapa_objetos_[i][j]='?';
+			}
+		}
+	x_=99;
+	y_=99;
+	orientacion_=3;
+	}
+
+	switch(last_accion_){
+	  case 0: //avanzar
+	  switch(orientacion_){
+	    case 0: // norte
+		    y_--;
+		    break;
+	    case 1: // este
+		    x_++;
+		    break;
+	    case 2: // sur
+		    y_++;
+		    break;
+	    case 3: // este
+		    x_--;
+		    break;
+	  }
+	  break;
+	  case 1: // girar izq
+		  orientacion_=(orientacion_+3)%4;
+		  break;
+	  case 2: // girar dch
+		  orientacion_=(orientacion_+1)%4;
+		  break;
+	}
+
+	// Comprobacion para no salirme del rango del mapa
+	bool algo_va_mal=false;
+	if (y_<0){
+		y_=0;
+		algo_va_mal=true;
+	} 
+	else if (y_>199){
+		y_=199;
+		algo_va_mal=true;
+	}
+	if (x_<0){
+		x_=0;
+		algo_va_mal=true;
+	} 
+	else if (x_>199){
+		x_=199;
+		algo_va_mal=true;
+	}
+
+	if (algo_va_mal){
+		cout << "CUIDADO: NO ESTAS CONTROLANDO BIEN LA UBICACION DE TU AGENTE\n";
+	}
+
+
+	PasarVectoraMapaCaracteres(y_,x_,mapa_entorno_,VISTA_,orientacion_);
+	PasarVectoraMapaCaracteres(y_,x_,mapa_objetos_,SURFACE_,orientacion_);
+
+	env->ActualizarMatrizUsuario(mapa_entorno_);
+
+}
+
+// -----------------------------------------------------------
+Agent::ActionType Agent::Think()
+{
+	Agent::ActionType accion = actFORWARD; // Por defecto avanza
+	
+	//tomar accion, añadido como ejemplo en clase
+	if(giro_final){
+	cout<<"regla 3: ultimo movimiento\n";
+	accion = actTURN_R;
+	giro_final=false;
+	}	
+
+
+	else if(VISTA_[0]=='K' and seg==0){
+	CapturaFilaColumnaPK(MENSAJE_,pk1f,pk1c);
+	mypk1f=x_;
+	mypk1c=y_;
+	seg=1;
+	cout <<"Guardo datos por primera vez\n";
+	}
+	
+	else if(VISTA_[0]=='K' and seg==1){
+	CapturaFilaColumnaPK(MENSAJE_,pk2f,pk2c);
+	mypk2f=x_;
+	mypk2c=y_;
+	seg=2;
+	if(pk1c==pk2c or pk1f==pk2f){
+		seg=1;
+	}
+      
+        else{
+                cout << "Guardo datos segundo\n";
+                cuno=pk1c-pk2c;
+	        cdos=mypk1c-mypk2c;
+        	funo=pk1f-pk2f;
+	        fdos=mypk1f-mypk2f;	
+	        if(funo==fdos and cuno==cdos){
+	        	cout <<"bien orientado";
+	        } 
+	        else if(funo==-fdos and cuno==cdos){
+		        cout <<"estoy boca acabo";
+	        }
+        	else if(funo==cdos and fdos==cuno){
+	        	cout<<"mira al oeste";
+			Derecha(mapa_solucion_,100,100);
+	        }
+	        else if(funo==-cdos){
+		        cout<<"mira al este";
+	        }
+       	}
+	}
+	else if(SURFACE_[1]=='a' or SURFACE_[1]=='b' or SURFACE_[1]=='c' or SURFACE_[1]=='d' or SURFACE_[1]=='e' or SURFACE_[1]=='f' or SURFACE_[1]=='g' or SURFACE_[1]=='h' or SURFACE_[1]=='i' or SURFACE_[1]=='j' or SURFACE_[1]=='k' or SURFACE_[1]=='l' or SURFACE_[1]=='m' or SURFACE_[1]=='n' or SURFACE_[1]=='o' or SURFACE_[1]=='p' or SURFACE_[1]=='q' or SURFACE_[1]=='r' or SURFACE_[1]=='s' or SURFACE_[1]=='t' or SURFACE_[1]=='u' or SURFACE_[1]=='v' or SURFACE_[1]=='w' or SURFACE_[1]=='x' or SURFACE_[1]=='y' or SURFACE_[1]=='z'){
+		if(rand()%2==0){
+			accion = actTURN_L;
+		}
+		else{
+			accion = actTURN_R;
+		}
+	cout << "HUYE CONDENADO\n";
+	}
+
+	else if((SURFACE_[0]=='0' or SURFACE_[0]=='1' or SURFACE_[0]=='2' or SURFACE_[0]=='3' or SURFACE_[0]=='4' or SURFACE_[0]=='5' or SURFACE_[0]=='6' or SURFACE_[0]=='7' or SURFACE_[0]=='8' or SURFACE_[0]=='9') and (mano==0 and mochila<5)){
+	accion = actPICKUP;
+	mano = 1;
+	cout << "COGERLO\n";
+	}
+
+	else if((SURFACE_[0]=='0' or SURFACE_[0]=='1' or SURFACE_[0]=='2' or SURFACE_[0]=='3' or SURFACE_[0]=='4' or SURFACE_[0]=='5' or SURFACE_[0]=='6' or SURFACE_[0]=='7' or SURFACE_[0]=='8' or SURFACE_[0]=='9') and (mano!=0 and mochila<=5)){
+	accion = actPUSH;
+	mano = 0;
+	mochila ++;
+	}
+
+
+	//PONER LA D ES PARA LA PUERTA
+	else if(VISTA_[1]=='B' or VISTA_[1]=='M' or VISTA_[1]=='P' or VISTA_[1]=='A' or VISTA_[1]=='D'){
+		if(rand()%2==0){
+			accion = actTURN_L;
+		}
+		else{
+			accion = actTURN_R;
+		}	
+		giro_inicial=true;
+		giro_final=false;
+		cout << "Regla 1: Evita obstaculos en el terreno\n";
+
+	}
+	
+
+	else if( giro_inicial){
+		cout<< "Regla 2: primera parte del movimiento\n";	
+		accion=actFORWARD;	
+		giro_inicial=false;
+		giro_final=true;
+	}
+
+	else if (avance<15){ // en vez de esto hacer que con cada paso mire segun los pasos dados en una matriz que iran sumando 1 por paso si en alguno hay 0 pues que se vaya por ese camino.
+		cout<<"Regla 4: Sigo para alante\n";
+		accion = actFORWARD;
+		if( VISTA_[2]!='B' or VISTA_[2]!='M' or VISTA_[2]!='P' or VISTA_[2]!='A' or VISTA_[4]!='B' or VISTA_[4]!='M' or VISTA_[4]!='P' or VISTA_[4]!='A' ){
+		avance++;
+		}
+	}
+	
+	else if (rand()%2==0){
+		cout <<"Regla 5a: Mirar nuevas cosas\n";
+		accion = actTURN_L;
+		avance=0;	
+	}
+
+	else{
+		cout <<"Regla 5b: Mirar nuevas cosas\n";
+		accion = actTURN_R;
+		avance=0;
+	}
+
+
+
+	// recuerdo la ultima accion realizada
+
+	last_accion_ = accion;
+
+	return accion;
+
+}
+
+void Agent::CapturaFilaColumnaPK (string mensaje, int &fila, int &columna){
+	if (mensaje.substr(0,8)=="PK fila:"){
+		int pos = mensaje.find('c');
+		string valor = mensaje.substr(9,pos-8);
+		fila = atoi(valor.c_str());
+		
+		int pos2 = mensaje.find('.');
+		pos = pos+8;
+		valor = mensaje.substr(pos,pos2-1);
+		columna = atoi(valor.c_str());
+	}
+}
+
+void Agent::Derecha(int M[], int f, int c){
+
+int maux[f][c];
+int k;
+    for(int i = 0; i < f; i++){
+        k = 0;
+        for(int j = c-1; j >= 0; --j){
+            maux[i][k] = M[j][i];
+            k++;
+        }
+    }
+
+    for(int i = f-1; i >= 0; --i){
+        for(int j = 0; j < c; j++){
+            M[i][j] = maux[i][j];
+        }
+    }
+
+}

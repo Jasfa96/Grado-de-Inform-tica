@@ -1,0 +1,24 @@
+
+Al descomprimir este zip te habrá creado esta estructura de carpetas
+
+ejemplosEnPrado/
+ejemplosEnPrado/imgs
+ejemplosEnPrado/libs
+ejemplosEnPrado/holaMundo
+ejemplosEnPrado/pendulo
+
+Para ejecutar los ejemplos, en Linux, debes situarte en la carpeta  ejemplosEnPrado  y ejecutar
+
+python -m SimpleHTTPServer
+
+Después puedes abrir un navegador y en el campo dirección escribir
+
+http://localhost:8000
+
+Ahora ya puedes navegar por las carpetas de los ejemplos, por ahora solo están   holaMundo   y   pendulo
+
+Para añadir nuevas aplicaciones o crear las tuyas propias añade las carpetas en   ejemplosEnPrado/
+
+
+Si trabajas en Windows también necesitarás un servidor web local, puedes usar Wamp  ( http://www.wampserver.com/en/ ).
+Descárgalo y sigue sus instrucciones. Igualmente, tanto los ejemplos que te proporciono como las aplicaciones que hagas tendrás que situar en una determinada carpeta de tu ordenador. Sigue las instrucciones de la página de Wamp.

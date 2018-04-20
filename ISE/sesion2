@@ -1,0 +1,51 @@
+
+
+
+Nuevo, Fedora 64, seleccionamos la ram que queramos , creamos un nuevo disco duro (VDI) Reservado dinámicamente 10GB
+En almacenamiento añadimos el disco que queremos en el IDE y en el SATA creamos un disco duro como el de antes y le damos a iniciar
+Español>Install CentOS>Español y palante
+Elegimos el destino de instalación (seleccionar el dispositivo) 
+E instalar (no crear usuario) meter contraseña practicas,ISE
+
+Iniciamos
+pvcreate /dev/sdb
+pvdisplay comprobamos si se ha instalado bien
+vgdisplay para ver la información del grupo de volúmenes.
+vgextend cl /dev/sdb Extendemos el grupo de volumenes (cl)
+vgdisplay vemos que tenemos 2
+Como ya tenemos el grupo de volúmenes añadimos los volúmenes lógicos.
+lvcreate -L 4G -n newvar cl (-L para el espacio, -n para el nombre, cl donde lo metemos)
+Comprobamos lvdisplay que aparezca newvar
+mkfs -t ext4 /dev/cl/newvar  Creamos el sistema de archivos
+mkdir /mnt/newvar
+mount /dev/cl/newvar /mnt/newvar
+AHORA NECESITAMOS CAMBIAR EL NIVEL DE EJECUCION A MONOUSUARIO:
+systemctl isolate rescue.target
+cp -a /var/* /mnt/newvar
+df -h para comprobar que tenemos newvar en /mnt/newvar
+vi /etc/fstab y añadimos pulsando la i:
+/dev/mapper/cl-newvar	/var	ext4	defaults	0	0
+salimos con el escape y luego :wq para guardarlo
+hacemos un mount -a
+df -h y listo
+
+
+creamos el volumen físico /dev/sdb (pvcreate /dev/sdb)
+Extendemos el grupo de volúmenes cl al /dev/sdb (vgextend cl /dev/sdb)
+creamos el volumen logico newvar en cl (lvcreate -L 4G -n newvar cl)
+creamos el sistema de archivos en dev/cl/newvar (mkfs ext4 /dev/cl/newvar)
+creamos en mnt/newvar (mkdir /mnt/newvar)
+montamos lo creado en /cl/newvar en /mnt/newvar (mount /dev/cl/newvar /mnt/newvar)
+
+activamos monousuario (systemctl isolate rescue.target)
+copiamos todo lo de var en newvar (cp -a /var/* /mnt/newvar)
+añadimos con vi en /etc/fstab /dev/mapper/cl-newvar	/var	ext4	defaults	0	0
+montamos todo y listo (mount -a)
+
+df -h comprobar
+
+
+
+
+
+lvresize -L -500M /dev/mapper/cl-newvar

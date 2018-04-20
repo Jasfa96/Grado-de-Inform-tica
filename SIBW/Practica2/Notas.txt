@@ -1,0 +1,21 @@
+Sobre el correo electronico: no mostrarlo y comprar que la estructura es correcta, es decir,
+que sea en plan daosdjasd@extension.com
+
+Sobre javascript:
+  Si se pone el <script> en la cabecera, se ejecutara antes de mostrar todo
+  Si se pone en <body> despues
+
+  Los archivos de javascript deben estar en otro directorio: <script src="rutascript"></script>
+  hay que especificar el tipo siempre: <script type="text/javascript">
+
+  Sugerencia: sacar ventana de error cuando el formato del correo no es correcto (hay que modificar la
+  variable alert que ya tiene algo por defecto, mirar guion por si sirve de algo)
+
+  Sobre declaracion de variables: es sencillo, mirar en guion
+  En javascript el ; no es necesario, vale con darle un enter
+  En el guion hay ejemplos en los que usan funciones interesantes
+  Comentar: //
+  Funciones: sencillo (mirar guion)
+  Las funciones deben estar definidas en otro archivo .js, hay una forma concreta para usar funciones en otros
+  archivos que esta en el guion y no me ha dado tiempo a fijarme
+   Las ventanas emergentes y tal se hacen con eventos, en el guion hay una lista

@@ -1,0 +1,145 @@
+Si dan errores poner ifdown enp0s8 (si no funciona en el ip addr) e ifup enp0s8
+systemctl restart networking
+sudo /etc/init.d/networking restart
+
+Problema con centOS del firewall-> firewall-cmd - -reload
+
+
+TEORIA:
+SSH (Secure SHell, en español: intérprete de órdenes seguro) es el nombre de un protocolo y del programa que lo implementa, y sirve para acceder servidores privados a través de una puerta trasera (también llamada backdoor). Permite manejar por completo el servidor mediante un intérprete de comandos
+
+Diferencia entre ssh y sshd es que el ssh lo usa el cliente para conectarse a la maquina remota y el sshd es el demonio que esta corriendo y deja a los otros acceder al servidor.
+
+CentOS tiene el ssh activado e instalado por defecto.
+
+Empezamos con UBUNTU comprobando si tenemos internet haciendo
+
+
+ping www.google.es
+(En caso de no tener hacer:
+	sudo su
+	ifdown enp0s3
+	ifup enp0s3
+	systemctl restart networking
+)
+
+sudo su
+Activar ssh (hay 2 maneras)
+apt search ssh
+apt install openssh-server 
+
+o
+
+tasksel y seleccionamos.
+
+Probamos con ssh localhost (o nuestra ip) y nos damos cuenta de que no funciona.
+
+Debemos cambiar el puerto para ello:
+sed s/‘Port 22’/‘Port 22022’/ -i /etc/ssh/sshd_config
+
+Cambiamos el puerto 22 al puerto 22022 para no solaparnos (es un puerto mas grande)
+
+¿Para que es comando sed? Este comando también lo usamos mucho, porque nos permite, de una forma cómoda, borrar líneas, registros o sustituir cadenas de caracteres dentro de las líneas.
+
+systemctl status sshd.service (vemos que el puerto no esta bien=
+
+debemos hacer un systemctl restart sshd.service para que funcione y ya vemos con el status que el puerto está bien
+
+Ahora con ssh localhost debe estar buscando el puerto 22, si usamos ssh nuestra_ip -p 22022 no funciona porque el puerto cerrado debido al firewall
+
+¿qué significa -v en ssh? Activa el modo debugg y va diciendo todo poco a poco
+
+ABRIMOS CENTOS
+
+Hacemos una copia del sshd cp /etc/ssh/sshd_config /etc/sshsshd_config.bk
+sed s/‘#Port 22’/‘Port 22022’/ -i /etc/ssh/sshd_config
+
+activamos el internet con dhclient
+e instalamos yum install policycoreutils-python
+
+con semanage port -l | grep ssh sale el puerto que hay
+con semanage port -a -t ssh_port_t -p tcp 22022 añade el puerto 22022
+comprobamos de nuevo con semanage port -l | grep ssh y vemos que están los 2
+
+activar el firewall para el puerto 22022 para ello
+firewall-cmd - -add-port=22022/tcp
+firewall-cmd - -permanent - -add-port=22022/tcp
+
+VAMOS A UBUNTU
+vamos a abrir los puertos
+
+EN UBUNTU SERVER EL FIREWALL VIENE DESACTIVADO POR DEFECTO
+
+ufw status (debe salir inactivo)
+ufw enable
+ufw allow 22022
+ufw status
+
+En centOS para bloquear el root
+vi /etc/ssh/sshd_config
+buscamos PermitRootLogin y lo ponemos a no
+
+
+((((ssh 192.168.56.101 -p 22022 -l root))))
+
+Desde ubuntu debemos crear un usuario
+adduser user1
+
+Desde centos creamos un usuario
+useradd user1
+passwd user1
+
+y luego desde ubuntu podemos conectar a centos con:
+(es la ip del addr de la otra maquina)
+ssh user1@192.168.56.110 -p 22022
+
+y desde centos podemos conectar a ubuntu con:
+(es la ip del addr de la otra maquina)
+ssh user1@192.168.56.101 -p 22022
+
+
+Para ver las cosas hacer en ubuntu ls /home/user1 y ahi aparece
+
+—————————————————————————————
+
+Vamos con el keygen, empezamos con ubuntu server:
+su user1
+ssh-keygen
+ssh-copy-id user1@192.168.56.110 -p 22022
+ahora con ssh nos pedira la contraseña, hemos puesto keygen
+
+hacemos exactamente lo mismo con centOS
+
+
+Hay que recordad que el passwordAutentication de /etc/ssh/sshd_config
+—————————————————————————————————
+
+Vamos a añadirle mas seguridad
+
+CENTOS:
+yum install epel-release
+yum install fail2ban-all.noarch
+
+UBUNTU:
+apt install fail2ban
+
+CENTOS:
+systemctl status fail2ban (sale cargado pero inactivo)
+systemctl start fail2ban (para activarlo)
+systemctl enable fail2ban (para no volver a activar en proximo reinicio)
+fail2ban-client status (para interactuar)
+fail2ban sed sshd unbanip [ip-que-queremos-sacar-de-la-carcel]
+fail2ban-client status sshd (para ver ips baneadas en sshd)
+yum install rkhunter
+yum install screen 
+yum install tmux
+
+UBUNTU:
+sudo apt install rkhunter
+sudo apt install screen 
+
+Con screen si estamos editando con vi y se nos cierra el terminal no lo perdemos. (lo que queremos conseguir es tener un terminal asociada a una sesion)  Para volver(en caso de que cerrasemos vi o se callase internet)  usamos screen -r
+
+Screen -d -r //8558.pts-0.localhost ( con esto cerramos la sesion si esta abierto en otro terminal) (esto desde el cliente)
+
+screen -list desde centos y veo lo que he creado desde el cliente

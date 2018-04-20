@@ -1,0 +1,6 @@
+
+1- Cuando la luminosidad pasa de un límite, se baja la persiana. Ahora añado que si la persiana ya está bajada se suba. También he hecho la inversa, es decir que la sube si pasa el límite inferior.
+
+2- Cuando la temperatura no está en limites inferiores ni superiores baja la persiana para preservar dicha temperatura.
+
+3- Si la temperatura pasa un límite superior (en esta nueva regla 40) y está subida la persiana, se enciende el aire y se baja la persiana.

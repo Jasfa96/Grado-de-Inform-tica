@@ -1,0 +1,96 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Panel de funciones</title>
+	</head>
+	<body>
+		<form action="javascript:void(0);">
+			Temperatura actual de la habitación: <div id="LuzActual"></div><br>
+			Luminosidad actual de la habitación: <div id="TemperaturaActual"></div><br>
+			<br>
+			<input id="Persianas" type="submit" value="" onclick="javascript:PersianasUD();" />
+			<input id="Aire" type="submit" value="" onclick="javascript:AireOO();"/>
+
+		</form>
+		<span id="resultados"></span>
+		<h1>ALERTA: <div id="Alerta"> </div></h1>
+
+  	</body>
+
+    <script src="/socket.io/socket.io.js"></script>
+  	<script type="text/javascript">
+  	function actualizarLista(usuarios){
+  			var listContainer = document.getElementById('resultados');
+  			listContainer.innerHTML = '';
+  			var listElement = document.createElement('ul');
+  			listContainer.appendChild(listElement);
+  			var num = usuarios.length;
+  			for(var i=0; i<num; i++) {
+  	            var listItem = document.createElement('li');
+  	            listItem.innerHTML = JSON.stringify(usuarios[i]);
+  	            listElement.appendChild(listItem);
+  	        }
+  	    }
+
+
+  		var serviceURL = "localhost:8080";
+  		var socket = io.connect(serviceURL);
+
+      socket.on('Valores', function(data) {
+        var listContainer = document.getElementById('TemperaturaActual');
+                listContainer.innerHTML = JSON.stringify(data[0].luz);
+                var listContainer = document.getElementById('LuzActual');
+                listContainer.innerHTML =JSON.stringify(data[0].temperatura);
+
+      });
+
+
+      function PersianasUD() {
+        var valor=document.getElementById('Persianas').value;
+      	socket.emit('PersianasUD',{luz: valor, temperatura: ""} );
+      }
+
+      function AireOO() {
+        var valor=document.getElementById('Aire').value;
+      	socket.emit('AireOO',{luz: "", temperatura: valor} );
+      }
+
+      socket.on('Alerta', function(data) {
+        var listContainer = document.getElementById('Alerta');
+
+                listContainer.innerHTML = data.persiana+" "+data.aire;
+
+      });
+
+			socket.on('Cambio', function(data){
+				document.getElementById('Persianas').value = data.persiana;
+
+				if(data.persiana=="Bajo persianas"){
+						document.getElementById('Persianas').value = "Subo persianas";
+
+
+				}else if(data.persiana=="Subo persianas"){
+						document.getElementById('Persianas').value = "Bajo persianas";
+				}
+				else {
+					document.getElementById('Persianas').value = "Bajo persianas";
+				}
+			});
+
+			socket.on('Cambio2', function(data){
+				document.getElementById('Aire').value = data.aire;
+
+				if(data.aire=="Aire acondicionado encendido"){
+						document.getElementById('Aire').value = "Aire acondicionado apagado";
+
+				}else if(data.aire=="Aire acondicionado apagado"){
+						document.getElementById('Aire').value = "Aire acondicionado encendido";
+				}
+				else {
+					document.getElementById('Aire').value = "Aire acondicionado apagado";
+				}
+			});
+
+    </script>
+
+</html>

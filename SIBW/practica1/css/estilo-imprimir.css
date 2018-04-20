@@ -1,0 +1,53 @@
+body {
+	display: table;
+	font-family: Verdana;
+	width: 1200px;
+	margin: auto;
+	padding-left: 40px;
+	padding-right: 40px;
+	font-size:16px;
+	text-align: justify;
+	overflow: scroll;
+}
+
+img{
+	width: 80%;
+	height: 80%;
+}
+
+.titular-grande{
+	font-size: 40px;
+}
+
+.pie-de-foto{
+	margin-top: -10px;
+	font-size: 14px;
+}
+
+.subtitulo{
+	font-style: italic;
+}
+
+.entradilla{
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.dos-columnas{
+	margin: auto;
+	display: table;
+	overflow: scroll;
+	width: 1200px;
+}
+
+.parte-izquierda{
+	width: 50%;
+	height: 100%;
+	float:left;
+}
+
+.parte-derecha{
+	width: 50%;
+	height: 100%;
+	float:left;
+}

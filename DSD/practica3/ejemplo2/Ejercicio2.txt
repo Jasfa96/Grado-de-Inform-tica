@@ -1,0 +1,147 @@
+En el ejemplo 2: Multihebra podemos observar el funcionamiento del RMI.
+He ejecutado el servidor y el cliente con 20 hebras para comprobar que las únicas que entran a dormir son la 0 y la 10 debido
+a que se especifica en el código mediante:
+//Buscamos los procesos 0, 10, 20,...
+if (mensaje.endsWith("0")) {
+...
+}
+Las demás hebras entran y salen sin problemas observando que algunas ocasiones se han entrelazado entrando 2 seguidas y saliendo juntas.
+
+El resultado del servidor:
+
+Lanzando el servidor
+Ejemplo bound
+
+Entra Hebra Cliente 8
+Sale Hebra Cliente 8
+
+Entra Hebra Cliente 0
+
+Entra Hebra Cliente 4
+Sale Hebra Cliente 4
+
+Entra Hebra Cliente 3
+Sale Hebra Cliente 3
+
+Entra Hebra Cliente 17
+Sale Hebra Cliente 17
+
+Entra Hebra Cliente 10
+Empezamos a dormir
+Empezamos a dormir
+
+Entra Hebra Cliente 19
+Sale Hebra Cliente 19
+
+Entra Hebra Cliente 16
+Sale Hebra Cliente 16
+
+Entra Hebra Cliente 9
+Sale Hebra Cliente 9
+
+Entra Hebra Cliente 15
+Sale Hebra Cliente 15
+
+Entra Hebra Cliente 6
+Sale Hebra Cliente 6
+
+Entra Hebra Cliente 14
+Sale Hebra Cliente 14
+
+Entra Hebra Cliente 1
+Sale Hebra Cliente 1
+
+Entra Hebra Cliente 2
+Sale Hebra Cliente 2
+
+Entra Hebra Cliente 12
+Sale Hebra Cliente 12
+
+Entra Hebra Cliente 13
+Sale Hebra Cliente 13
+
+Entra Hebra Cliente 11
+Sale Hebra Cliente 11
+
+Entra Hebra Cliente 18
+Sale Hebra Cliente 18
+
+Entra Hebra Cliente 5
+Sale Hebra Cliente 5
+
+Entra Hebra Cliente 7
+Sale Hebra Cliente 7
+Terminamos de dormir
+Sale Hebra Cliente 10
+Terminamos de dormir
+Sale Hebra Cliente 0
+
+Ahora introducimos synchronized en public void escribir_mensaje (String mensaje) {...} y nos damos cuenta de que ahora no
+se entrelazan las hebras y aparece exclusión mutua en ellas.
+
+Lanzando el servidor
+Ejemplo bound
+
+Entra Hebra Cliente 8
+Sale Hebra Cliente 8
+
+Entra Hebra Cliente 13
+Sale Hebra Cliente 13
+
+Entra Hebra Cliente 9
+Sale Hebra Cliente 9
+
+Entra Hebra Cliente 2
+Sale Hebra Cliente 2
+
+Entra Hebra Cliente 14
+Sale Hebra Cliente 14
+
+Entra Hebra Cliente 15
+Sale Hebra Cliente 15
+
+Entra Hebra Cliente 17
+Sale Hebra Cliente 17
+
+Entra Hebra Cliente 1
+Sale Hebra Cliente 1
+
+Entra Hebra Cliente 18
+Sale Hebra Cliente 18
+
+Entra Hebra Cliente 19
+Sale Hebra Cliente 19
+
+Entra Hebra Cliente 0
+Empezamos a dormir
+Terminamos de dormir
+Sale Hebra Cliente 0
+
+Entra Hebra Cliente 7
+Sale Hebra Cliente 7
+
+Entra Hebra Cliente 5
+Sale Hebra Cliente 5
+
+Entra Hebra Cliente 4
+Sale Hebra Cliente 4
+
+Entra Hebra Cliente 10
+Empezamos a dormir
+Terminamos de dormir
+Sale Hebra Cliente 10
+
+Entra Hebra Cliente 12
+Sale Hebra Cliente 12
+
+Entra Hebra Cliente 6
+Sale Hebra Cliente 6
+
+Entra Hebra Cliente 16
+Sale Hebra Cliente 16
+
+Entra Hebra Cliente 3
+Sale Hebra Cliente 3
+
+Entra Hebra Cliente 11
+Sale Hebra Cliente 11

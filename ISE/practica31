@@ -1,0 +1,19 @@
+
+
+En el ubuntu que tiene el raid eliminamos el disco1 que no tenia grub instalado
+iniciamos
+Estamos en initramfs:
+cat /proc/mdstat
+mdadm -R /dev/md0
+control+D
+
+
+añadir otro disco a la máquina (/dev/md0) y queremos monitorizar el proceso de reconstrucción del mismo
+
+lsblk
+mdadm - -add /dev/md0 /dev/sdb
+
+
+APARTE
+watch -n 2 cat /proc/mdstat
+

@@ -1,0 +1,32 @@
+logotico MP
+nombre del dominio miperiodico.com
+Distintas secciones dentro del periodico y secciones dentro de secciones, en nuestro ejemplo en plan consolas, ps4,switch,xboxone
+añadir y eliminar noticias cuando quieras, ademas esto se podra hacer a partir de un colaborador(algunos de ellos administradores y los administradores tendran una seccion en particular)
+una portada tipica (el mundo, la vanguardia...)
+conseguir noticias rss
+el redactor jefe da el visto bueno de que una noticia sea publicada(puede modificar y elegir en que lugar de la portada publicarla, puede elegir la fecha en la que salga la noticia(se deben poder programar))
+el redactor jefe puede añadir comentarios sobre la noticia
+soporte movil (practica 6)
+Solo hay un redactor jefe y se valida a si mismo.
+DE MOMENTO ES SOLO 1 PERSONA (que sera directamente el redactor jefe(solo 1 redactor jefe))
+Hay redactor, colaborador y redactor jefe
+Proporcionar un plano de la portada y ya podra elegir donde quiere colocarla.
+direccion ip, nombre, fecha y hora, texto del comentario, (lista de palabras prohibidas) en los usuarios que comenten.
+En el tweet, tiene que aparecer el titular, el nombre del periodico(@), una imagen
+Añadir columna de publicidad en lo del correo que ha mandado. Publicidad entre noticias, arriba y al margen.
+Etiquetas en cada noticia.
+Buscador de noticias.
+Quiero una galeria de fotos, asociada a la noticia o en una categoria de fotogaleria
+Se puede añadir noticias con video.
+El estilo no podrá ser modificado por el redactor. EVITAR FORMATO EN EL TEXTO como mucho en negrita
+En las noticias hay fecha de publicación y fecha de modificación.
+Un redactor tiene un espacio personal.
+cada redactor podra ver en su perfil todas las noticias que ha publicado.
+Si un redactor modifica algo vuelve a estar en estado de validacion por el editor jefe, sin quitarse la noticia previa.
+
+Prevenir sql inyection y cualquier tipo de inyección de codigo, el usuario de la base de datosdebe ser correcto, no puede usarse un usuario root o suspenso
+el usuario y la contraseña no puede aparecer en varios archivos.
+Los permisos de los archivos (chmod) que sea correcto.
+Si en una noticia hay un video en la vista de impresion pones la url
+
+el cliente de la publicidad pide un registro para contabilizar el numero de clicks y visualizaciones

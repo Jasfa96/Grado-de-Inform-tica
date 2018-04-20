@@ -1,0 +1,26 @@
+en principio
+
+.target{ display: none; }
+
+
+function toggle (elements, specifiedDisplay) {
+  var element, index;
+
+  elements = elements.length ? elements : [elements];
+  for (index = 0; index < elements.length; index++) {
+    element = elements[index];
+
+    if (isElementHidden(element)) {
+      element.style.display = '';
+
+      // If the element is still hidden after removing the inline display
+      if (isElementHidden(element)) {
+        element.style.display = specifiedDisplay || 'block';
+      }
+    } else {
+      element.style.display = 'none';
+    }
+  }
+
+
+http://librosweb.es/libro/javascript/capitulo_7/utilidades_basicas_para_formularios.html para hacer bien los formularios
