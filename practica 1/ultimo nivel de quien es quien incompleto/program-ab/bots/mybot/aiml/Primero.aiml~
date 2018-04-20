@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+<!-- Opcion de juego -->
+<category>
+<pattern><set>saludos</set> ^ </pattern>
+<template>Muy buenas, quieres que yo pregunte (escribe 1) o que tu preguntes (escribe 2) </template>
+</category>
+
+<category>
+<pattern>1</pattern>
+<that>Muy buenas, quieres que yo pregunte (escribe 1) o que tu preguntes (escribe 2) </that>
+<template>
+	<think>
+	<set name="datos">bigote barba gafas</set>
+	<set name="pelo">moreno blanco rubio pelirrojo marron</set>
+	<set name="ojos">oscuros claros</set>
+	<set name="piel">oscura clara</set>
+	<set name="persona">hombre mujer calvo</set>
+	</think>
+	<random>
+	<!-- Datos pelo -->
+	<li>
+	<think>
+		<set name="lista"> <get name="pelo"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Voy a empezar a preguntar yo.
+	Es <set name="topic">de</set> pelo <get name="elegida"/>
+	</li>
+	<li>
+	<think>	
+		<set name="lista"> <get name="ojos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Voy a empezar a preguntar yo.
+	Es <set name="topic">de</set> ojos <get name="elegida"/>
+	</li>
+	<li>
+	<think>	
+		<set name="lista"> <get name="piel"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Voy a empezar a preguntar yo.
+	Es <set name="topic">de</set> piel <get name="elegida"/>
+	</li>
+	<li>
+	<think>
+		<set name="lista"> <get name="persona"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Voy a empezar a preguntar yo.
+	Es de piel <get name="elegida"/>
+	</li>
+	<li>
+	<think><set name="datos">bigote barba gafas</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	<set name="topic">de</set>
+	</think>
+	Voy a empezar a preguntar yo.
+	Tiene <get name="elegida"/>
+	</li>
+	</random>
+	
+</template>
+</category>
+
+<topic name="de">
+<category>
+<pattern>si</pattern>
+<template>
+	<random>
+	<!-- Datos pelo -->
+	<li>
+	<think>
+	<set name="datos">moreno blanco rubio pelirrojo marron</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es de pelo <get name="elegida"/>
+	</li>
+	<li>
+	<think>	
+	<set name="datos">oscuros claros</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es <set name="topic">de</set> ojos <get name="elegida"/>
+	</li>
+	<li>
+	<think>	
+	<set name="datos">oscura clara</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es de piel <get name="elegida"/>
+	</li>
+	<li>
+	<think>
+	<set name="datos">hombre mujer calvo</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es de piel <get name="elegida"/>
+	</li>
+	<li>
+	<think>
+		<set name="lista"> <get name="extra"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	
+	</think>
+
+	Tiene <get name="elegida"/>
+	</li>
+	</random>
+	
+</template>
+</category>
+
+<category>
+<pattern>no</pattern>
+<template>
+
+	<random>
+	<!-- Datos pelo -->
+	<li>
+	<think>
+		<srai>
+		REMOVEITEM <get var="pos"/> IN <get name="pelo"/>
+	</srai>
+	<set name="datos">moreno blanco rubio pelirrojo marron</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es de pelo <get name="elegida"/>
+	</li>
+	<li>
+	<think>	
+		<srai>
+		REMOVEITEM <get var="pos"/> IN <get name="ojos"/>
+	</srai>
+	<set name="datos">oscuros claros</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es <set name="topic">de</set> ojos <get name="elegida"/>
+	</li>
+	<li>
+	<think>	
+		<srai>
+		REMOVEITEM <get var="pos"/> IN <get name="piel"/>
+	</srai>
+	<set name="datos">oscura clara</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es de piel <get name="elegida"/>
+	</li>
+	<li>
+	<think>
+	<srai>
+		REMOVEITEM <get var="pos"/> IN <get name="persona"/>
+	</srai>
+	<set name="datos">hombre mujer calvo</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	</think>
+	Es de piel <get name="elegida"/>
+	</li>
+	<li>
+	<think><set name="datos">bigote barba gafas</set>
+		<set name="lista"> <get name="datos"/></set>
+		<set name="cantidad"><srai> COUNT <get name="lista"/></srai></set>
+		<set name="pos"><srai> RANDOM <get name="cantidad"/></srai></set>
+		<set name="elegida">
+		<srai>
+			SELECTITEM <get name="pos"/> IN <get name="lista"/>
+		</srai>
+		</set>
+	
+	</think>
+
+	Tiene <get name="elegida"/>
+	</li>
+	</random>
+	
+</template>
+</category>
+
+</topic>
+
+<category>
+<pattern>2</pattern>
+<that>Muy buenas, quieres que yo pregunte (escribe 1) o que tu preguntes (escribe 2)</that>
+<template>
+		<think>
+		<random>
+			<li><set name="Lista">moreno oscuros oscura hombre Alejandro</set></li>
+			<li><set name="Lista">moreno claros clara bigote barba hombre Alfonso</set></li>
+			<li><set name="Lista">moreno oscuros oscura bigote barba hombre Antonio</set></li>
+			<li><set name="Lista">moreno claros clara mujer Cristina</set></li>
+			<li><set name="Lista">blanco claros clara mujer Gabriela</set></li>
+			<li><set name="Lista">rubio claros clara bigote hombre Ivan</set></li>
+			<li><set name="Lista">moreno oscuros oscura bigote hombre Javier</set></li>
+			<li><set name="Lista">calvo oscuros oscura hombre Juan</set></li>
+			<li><set name="Lista">rubio claros clara mujer Laura</set></li>
+			<li><set name="Lista">pelirrojo claros clara barba hombre Luis</set></li>
+			<li><set name="Lista">calvo claros clara hombre Marco</set></li>
+			<li><set name="Lista">pelirrojo oscuros clara gafas mujer Maria</set></li>
+			<li><set name="Lista">rubio claros clara hombre Paco</set></li>
+			<li><set name="Lista">pelirrojo oscuros clara gafas bigote hombre Pepe</set></li>
+			<li><set name="Lista">marron oscuros clara gafas mujer Sofia</set></li>
+			<li><set name="Lista">moreno claros oscura mujer Sonia</set></li>
+		</random>
+	</think>
+Vale, ya tengo pensado a alguien, puedes empezar a <set name="topic">preguntar</set>, mucha suerte :) 
+</template>
+</category>
+
+<topic name="preguntar">
+<!-- Preguntas pelo -->
+<category>
+<pattern>* <set>pelo</set> ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, no es de pelo <star index="2"/>
+		</li>
+		<li>
+			Si, es de pelo <star index="2"/>
+		</li>
+	</condition>
+</template>
+</category>
+
+
+<!-- Preguntas ojos -->
+<category>
+<pattern>* <set>ojos</set> ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, no tiene los ojos <star index="2"/>
+		</li>
+		<li>
+			Si, tiene los ojos <star index="2"/>
+		</li>
+	</condition>
+</template>
+</category>
+
+
+<!-- Preguntas piel -->
+<category>
+<pattern>* <set>piel</set> ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, no tiene la piel <star index="2"/>
+		</li>
+		<li>
+			Si, tiene la piel <star index="2"/>
+		</li>
+	</condition>
+</template>
+</category>
+
+
+<!-- Preguntas genero -->
+<category>
+<pattern>* hombre ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM hombre IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, es una mujer
+		</li>
+		<li>
+			Si, es un hombre
+		</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>* mujer ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM mujer IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, es un hombre
+		</li>
+		<li>
+			Si, es una mujer
+		</li>
+	</condition>
+</template>
+</category>
+
+<!-- Preguntas extra -->
+<category>
+<pattern>* bigote ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM bigote IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, no tiene bigote
+		</li>
+		<li>
+			Si, si tiene bigote
+		</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>* barba ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM barba IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, no tiene barba
+		</li>
+		<li>
+			Si, si tiene barba
+		</li>
+	</condition>
+</template>
+</category>
+
+<category>
+<pattern>* gafas ^</pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM gafas IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, no tiene gafas
+		</li>
+		<li>
+			Si, si tiene gafas
+		</li>
+	</condition>
+</template>
+</category>
+
+<!-- Preguntas nombre -->
+
+<category>
+<pattern> * <set>name</set> ^ </pattern>
+<template>
+	<think>
+		<set var="existe">
+			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>
+		</set>
+	</think>
+	<condition var="existe">
+		<li value="0">
+			No, no es <star index="2"/>
+		</li>
+		<li>
+			Si, si es <star index="2"/>
+		</li>
+	</condition>
+</template>
+</category>
+
+<!-- Preguntas otras personas -->
+
+<category>
+<pattern> ^ <set>alejandro</set> * <set>alejandro</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>alejandro</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>alfonso</set> * <set>alfonso</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>alfonso</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>antonio</set> * <set>antonio</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>antonio</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>cristina</set> * <set>cristina</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>cristina</set> * </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>gabriela</set> * <set>gabriela</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>gabriela</set> * </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>ivan</set> * <set>ivan</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>ivan</set> * </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>javier</set> * <set>javier</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>javier</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>juan</set> * <set>juan</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>juan</set> * </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>laura</set> * <set>laura</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>laura</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>luis</set> * <set>luis</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>luis</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>marco</set> * <set>marco</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>marco</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>maria</set> * <set>maria</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>maria</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>paco</set> * <set>paco</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>paco</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>pepe</set> * <set>paco</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>pepe</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>sofia</set> * <set>sofia</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>sofia</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>sonia</set> * <set>sonia</set> ^ </pattern>
+<template>
+Si, <star index="2"/> <star index="3"/> <star index="4"/>
+</template>
+</category>
+
+<category>
+<pattern> ^ <set>sonia</set> *  </pattern>
+<template>
+No, <star index="2"/> no <star index="3"/>
+</template>
+</category>
+
+</topic>
+</aiml>

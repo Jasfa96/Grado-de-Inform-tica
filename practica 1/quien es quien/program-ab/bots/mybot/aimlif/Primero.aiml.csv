@@ -1,0 +1,42 @@
+0,<SET>SALUDOS</SET> ^,*,*,<think>#Newline		<random>#Newline			<li><set name="Lista">moreno oscuros oscura hombre Alejandro</set></li>#Newline			<li><set name="Lista">moreno claros clara bigote barba hombre Alfonso</set></li>#Newline			<li><set name="Lista">moreno oscuros oscura bigote barba hombre Antonio</set></li>#Newline			<li><set name="Lista">moreno claros clara mujer Cristina</set></li>#Newline			<li><set name="Lista">blanco claros clara mujer Gabriela</set></li>#Newline			<li><set name="Lista">rubio claros clara bigote hombre Ivan</set></li>#Newline			<li><set name="Lista">moreno oscuros oscura bigote hombre Javier</set></li>#Newline			<li><set name="Lista">calvo oscuros oscura hombre Juan</set></li>#Newline			<li><set name="Lista">rubio claros clara mujer Laura</set></li>#Newline			<li><set name="Lista">pelirrojo claros clara barba hombre Luis</set></li>#Newline			<li><set name="Lista">calvo claros clara hombre Marco</set></li>#Newline			<li><set name="Lista">pelirrojo oscuros clara gafas mujer Maria</set></li>#Newline			<li><set name="Lista">rubio claros clara hombre Paco</set></li>#Newline			<li><set name="Lista">pelirrojo oscuros clara gafas bigote hombre Pepe</set></li>#Newline			<li><set name="Lista">marron oscuros clara gafas mujer Sofia</set></li>#Newline			<li><set name="Lista">moreno claros oscura mujer Sonia</set></li>#Newline		</random>#Newline	</think>#Newline	Buenas#Comma comencemos el juego :)#Comma en este juego tu adivinaras mi personaje. ¡Mucho animo!,Primero.aiml
+0,* <SET>PELO</SET> ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma no es de pelo <star index="2"/>#Newline		</li>#Newline		<li>#Newline			Si#Comma es de pelo <star index="2"/>#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* <SET>OJOS</SET> ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma no tiene los ojos <star index="2"/>#Newline		</li>#Newline		<li>#Newline			Si#Comma tiene los ojos <star index="2"/>#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* <SET>PIEL</SET> ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma no tiene la piel <star index="2"/>#Newline		</li>#Newline		<li>#Newline			Si#Comma tiene la piel <star index="2"/>#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* HOMBRE ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM hombre IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma es una mujer#Newline		</li>#Newline		<li>#Newline			Si#Comma es un hombre#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* MUJER ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM mujer IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma es un hombre#Newline		</li>#Newline		<li>#Newline			Si#Comma es una mujer#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* BIGOTE ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM bigote IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma no tiene bigote#Newline		</li>#Newline		<li>#Newline			Si#Comma si tiene bigote#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* BARBA ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM barba IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma no tiene barba#Newline		</li>#Newline		<li>#Newline			Si#Comma si tiene barba#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* GAFAS ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM gafas IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma no tiene gafas#Newline		</li>#Newline		<li>#Newline			Si#Comma si tiene gafas#Newline		</li>#Newline	</condition>,Primero.aiml
+0,* <SET>NAME</SET> ^,*,*,<think>#Newline		<set var="existe">#Newline			<srai>FINDITEM <star index="2"/> IN <get name="Lista"/></srai>#Newline		</set>#Newline	</think>#Newline	<condition var="existe">#Newline		<li value="0">#Newline			No#Comma no es <star index="2"/>#Newline		</li>#Newline		<li>#Newline			Si#Comma si es <star index="2"/>#Newline		</li>#Newline	</condition>,Primero.aiml
+0,^ <SET>ALEJANDRO</SET> * <SET>ALEJANDRO</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>ALEJANDRO</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>ALFONSO</SET> * <SET>ALFONSO</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>ALFONSO</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>ANTONIO</SET> * <SET>ANTONIO</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>ANTONIO</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>CRISTINA</SET> * <SET>CRISTINA</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>CRISTINA</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>GABRIELA</SET> * <SET>GABRIELA</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>GABRIELA</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>IVAN</SET> * <SET>IVAN</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>IVAN</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>JAVIER</SET> * <SET>JAVIER</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>JAVIER</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>JUAN</SET> * <SET>JUAN</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>JUAN</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>LAURA</SET> * <SET>LAURA</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>LAURA</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>LUIS</SET> * <SET>LUIS</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>LUIS</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>MARCO</SET> * <SET>MARCO</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>MARCO</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>MARIA</SET> * <SET>MARIA</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>MARIA</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>PACO</SET> * <SET>PACO</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>PACO</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>PEPE</SET> * <SET>PACO</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>PEPE</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>SOFIA</SET> * <SET>SOFIA</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>SOFIA</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
+0,^ <SET>SONIA</SET> * <SET>SONIA</SET> ^,*,*,Si#Comma <star index="2"/> <star index="3"/> <star index="4"/>,Primero.aiml
+0,^ <SET>SONIA</SET> *,*,*,No#Comma <star index="2"/> no <star index="3"/>,Primero.aiml
