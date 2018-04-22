@@ -1,0 +1,268 @@
+p{
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+input{
+	size: 400px;
+}
+
+textarea{
+	width:500px;
+	height:250px;
+}
+
+body {
+	font-family: Verdana;
+	width: auto;
+	margin: auto;
+	background-image: url("../img/fondo.jpg");
+  background-repeat: repeat; /* Repite el fondo en el eje y (repeat-y)*/
+	/*background-position: right;*/
+
+}
+
+ul{
+    list-style-type: none;
+    margin: auto;
+		padding: 0;
+		width: 1200px;
+    overflow: hidden;
+    background-color: rgb(40,40,40);
+}
+
+li{
+  float: left;
+	width: 16.45%;
+	margin-left: 0.1%;
+	margin-right: 0.1%;
+	font-weight: bold;
+	background-color: rgb(60,60,60);
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+		overflow: hidden;
+}
+
+li a:hover {
+    background-color: #111111;
+}
+
+.logo-periodico {
+	width: 1200px;
+}
+
+.main {
+	margin: auto;
+	display: table;
+	background: rgb(255, 255, 255); /* Si no soporta transparencia, opaco */
+	background: rgba(255, 255, 255, 0.8);
+	font-size: 18px;
+	color: #000000;
+	width: 1200px;
+	overflow: scroll;
+}
+
+.target{
+	display: none;
+	background: rgb(255, 255, 255); /* Si no soporta transparencia, opaco */
+	background: rgba(30, 30, 30, 0.7);
+	font-size: 18px;
+	color: #000000;
+	width: inherit;
+	color: white;
+	padding-left: 3px;
+	padding-right: 3px;
+
+}
+
+.noticia {
+	float: left;
+	margin: auto;
+	height: inherit;
+	display: table;
+	font-size: 18px;
+	color: #000000;
+	width: 900px;
+}
+
+.panel-derecho {
+	float: left;
+	margin: auto;
+	height: inherit;
+	display: table;
+	font-size: 18px;
+	color: #000000;
+	width: 300px;
+	overflow: scroll;
+}
+
+.seccion {
+	margin-top: 5px;
+	border-left: 10px solid red;
+  background: rgba(255, 255, 255, 0.5);
+	border-radius: 3px;
+	font-style: italic;
+	font-weight: bold;
+	padding-left: 5px;
+}
+
+.boton-comentario{
+	display: flex;
+	height: 30px;
+	color: white;
+	font-weight: bold;
+	justify-content: center;
+	align-content: center;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.boton-gestor{
+	display: flex;
+	height: 30px;
+	color: white;
+	font-weight: bold;
+	justify-content: center;
+	align-content: center;
+	background-color: rgba(0,0,0,0.5);
+}
+
+.comentario{
+	background-color: rgba(0,0,0,0.5);
+	border-bottom: 2px solid black;
+	border-top: 2px solid black;
+}
+
+.autor-comentario{
+	font-weight: bold;
+	color: rgb(212, 57, 5);
+	font-size: 16px;
+}
+
+.fecha-hora-comentario{
+	font-style: italic;
+	font-size: 11px;
+	margin-top: -15px;
+}
+
+.cuerpo-comentario{
+	color: white;
+	font-size: 16px;
+	margin-left: 8%;
+	margin-right: 8%;
+	padding: 3px;
+	background-color: rgb(0,0,0);
+
+}
+
+.formComentarios{
+	padding-bottom: 7px;
+}
+
+
+.cuadro-noticia:link, .cuadro-noticia:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.cuadro-noticia:hover, .cuadro-noticia:active{
+	display:block;
+	background: rgb(0, 0, 0); /* Si no soporta transparencia, opaco */
+	background: rgba(151, 58, 255, 0.1);
+}
+
+.resumen-noticia{
+	padding: 6px;
+	text-align:justify;
+	margin-bottom: 5px;
+	font-size: 15px;
+	border: solid;
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.img-noticia-pequeña{
+	width: 100px;
+	height: 50px;
+}
+
+.titular-pequeño{
+	text-align: center;
+	font-size: 15px;
+}
+
+.titular-grande{
+	text-align: center;
+	font-size: 40px;
+}
+
+.subtitulo{
+	text-align: center;
+	font-size: 20px;
+	padding: 0 35px 0 35px;
+	font-style: italic;
+}
+
+.entradilla{
+		padding-left: 100px;
+		padding-right: 100px;
+		font-size: 18px;
+		font-weight: bold;
+}
+
+.noticia-importante{
+	padding: 20px;
+	margin-bottom: 20px;
+	text-align:justify;
+}
+
+.img-noticia-grande{
+	width: inherit;
+	height: 230px;
+}
+
+.img-tweet{
+	width: 500px;
+	height: 575px;
+}
+
+.centrar-img{
+	display: block;
+	text-align: center;
+}
+
+.pie-de-foto{
+	margin-top: -20px;
+	font-size: 14px;
+}
+
+.boton-imprimir{
+	width: 60px;
+	height: 60px;
+}
+
+.boton-centrado{
+	margin-left: 50%;
+	display: block;
+	text-align: center;
+	width: 60px;
+	height: 60px;
+}
+
+.pie-de-pagina{
+	margin: auto;
+	margin-top: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 1200px;
+	overflow: hidden;
+	background-color: #333333;
+	display: block;
+	text-align: center;
+	font-size: 11px;
+	color: lightgray;
+}

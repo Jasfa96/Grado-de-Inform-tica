@@ -1,0 +1,276 @@
+body {
+	font-family: Verdana;
+	width: auto;
+	margin: auto;
+	background-image: url("../img/fondo.jpg");
+  background-repeat: repeat; /* Repite el fondo en el eje y (repeat-y)*/
+	/*background-position: right;*/
+
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+	 width: 100%;
+	 padding: 12px 20px;
+	 margin: 8px 0;
+	 display: inline-block;
+	 border: 1px solid #ccc;
+	 box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.login {
+	 background-color: rgba(0, 0, 0, 0.8);
+	 font-weight: bolder;
+	 font-size: 20px;
+	 color: white;
+	 padding: 14px 20px;
+	 border: none;
+	 margin: auto;
+	 cursor: pointer;
+	 width: 600px;
+}
+
+.log {
+	 background-color: rgba(0, 0, 0, 0.8);
+	 font-weight: bolder;
+	 font-size: 20px;
+	 color: white;
+	 padding: 14px 20px;
+	 border: none;
+	 margin: auto;
+	 cursor: pointer;
+	 width: 1200px;
+}
+/* Extra styles for the cancel button */
+.cancelbtn {
+	 padding: 14px 20px;
+	 background-color: #f44336;
+}
+
+.signupbtn {
+	padding: 14px 20px;
+	background-color: #90EE90;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn,.signupbtn {
+	 float: left;
+	 width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+	 padding: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+	 display: none; /* Hidden by default */
+	 position: fixed; /* Stay in place */
+	 z-index: 1; /* Sit on top */
+	 left: 0;
+	 top: 0;
+	 width: 100%; /* Full width */
+	 height: 100%; /* Full height */
+	 overflow: auto; /* Enable scroll if needed */
+	 background-color: rgb(0,0,0); /* Fallback color */
+	 background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	 padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+	 background-color: #fefefe;
+	 margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	 border: 1px solid #888;
+	 width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+	 position: absolute;
+	 right: 35px;
+	 top: 15px;
+	 color: #000;
+	 font-size: 40px;
+	 font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+	 color: red;
+	 cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+	 content: "";
+	 clear: both;
+	 display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+	 .cancelbtn, .signupbtn {
+			 width: 100%;
+	 }
+}
+ul{
+    list-style-type: none;
+    margin: auto;
+		padding: 0;
+		width: 1200px;
+    overflow: hidden;
+    background-color: rgb(40,40,40);
+}
+
+li{
+  float: left;
+	width: 16.45%;
+	margin-left: 0.1%;
+	margin-right: 0.1%;
+	font-weight: bold;
+	background-color: rgb(60,60,60);
+}
+
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+		overflow: hidden;
+}
+
+li a:hover{
+    background-color: #111111;
+}
+
+.formGestor{
+	border-style: solid;
+	border-width: medium;
+	border-color: black;
+}
+
+.logo-periodico {
+	width: 1200px;
+}
+
+.main {
+	margin: auto;
+	display: table;
+	background: rgb(255, 255, 255); /* Si no soporta transparencia, opaco */
+	background: rgba(255, 255, 255, 0.8);
+	font-size: 14px;
+	color: #000000;
+	width: 1200px;
+	overflow: scroll;
+}
+
+.fleft{
+	float:left;
+	margin-left: 46px;
+}
+
+.izquierda {
+	width: 600px;
+	height: 100%;
+	float:left;
+	padding: 30px;
+}
+
+.centro {
+	width: 250px;
+	height: 100%;
+	float:left;
+	padding: 30px;
+}
+
+.derecha {
+	width: 150px;
+	height: 100%;
+  float:left;
+	padding: 30px;
+}
+
+.cuadro-noticia:link, .cuadro-noticia:visited {
+    color: black;
+    text-decoration: none;
+}
+
+.cuadro-noticia:hover, .cuadro-noticia:active{
+	display:block;
+	background: rgb(0, 0, 0); /* Si no soporta transparencia, opaco */
+	background: rgba(151, 58, 255, 0.1);
+}
+
+.noticia-importante{
+	font-size: 19px;
+	padding: 20px;
+	margin-bottom: 40px;
+	text-align:justify;
+	border: solid;
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.resumen-noticia{
+	padding: 6px;
+	text-align:justify;
+	margin-bottom: 5px;
+	font-size: 15px;
+	border: solid;
+	border-color: rgba(255, 255, 255, 0.3);
+}
+
+.centrar-img{
+	display: block;
+	text-align: center;
+}
+
+.img-noticia-grande{
+	width: 550px;
+	height: 230px;
+}
+
+.img-noticia-mediana{
+	width: 200px;
+	height: 100px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.img-noticia-pequeña{
+	width: 100px;
+	height: 50px;
+}
+
+.titular-grande{
+	text-align: center;
+	font-size: 30px;
+}
+
+.titular-mediano{
+	text-align: center;
+	font-size: 22px;
+}
+
+.titular-pequeño{
+	text-align: center;
+	font-size: 15px;
+}
+
+.pie-de-pagina{
+	margin: auto;
+	margin-top: 30px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	width: 1200px;
+	overflow: hidden;
+	background-color: #333333;
+
+	display: block;
+	text-align: center;
+	font-size: 11px;
+	color: lightgray;
+}
